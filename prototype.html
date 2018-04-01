@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>原型对象和原型链的理解</title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<h2>个人对原型对象和原型链理解的总结</h2>
+		<div>
+			<p style="color:blue">
+			在理解原型对象和原型链之前我们需要先理解一下值传递和引用传递<br/>
+			在理解值传递和引用传递之前，首先我们得知道js的数据类型有数字、字符串、数组、对象、布尔、Null、Undefined<br/>
+			请看下面例子：<br/>
+			</p>
+			 var a = 1;<br/>
+			 var b = 2;<br/>
+			 a = b;<br/>
+			 b = 3;<br/>
+			 console.log("a=",a,";","b=",b);  //a= 2 ; b= 3<br/>
+			 //说明数字是“值传递”的形式<br/>
+			 <br/>
+			 var a = "111";<br/>
+			 var b = "222";<br/>
+			 a = b;<br/>
+			 b = "333";<br/>
+			 console.log("a=",a,";","b=",b); //a= 222 ; b= 333<br/>
+			 //说明字符串是“值传递”的形式<br/>
+       <br/>
+			 var a = new Array();<br/>
+				a[0] = 1;<br/>
+				var b = new Array();<br/>
+				b[0] = 2;<br/>
+				a = b;<br/>
+				b[0] = 3;<br/>
+				console.log("a[0]=",a[0],";","b[0]=",b[0]); // a[0]= 3 ; b[0]= 3<br/>
+				//说明数组是“引用传递”的形式<br/>
+				<br/>
+				var a = {};<br/>
+				a.name = "tom";<br/>
+				var b = {};<br/>
+				b.name = "lucy";<br/>
+				a = b;<br/>
+				b.name = "jack";<br/>
+				console.log("a=",a.name,";","b=",b.name); // a= jack ; b= jack<br/>
+				//说明对象是“引用传递”的形式<br/>
+		</div>
+		<div>
+			<p style="color:blue">
+			接着我们来看原对象的例子，如下
+			</p>
+			function Person () {<br/>
+			this.name = 'John';<br/>
+			}  //这是一个构造函数，这里比喻成大楼图纸<br/>
+			var person = new Person();  //构造实例对象，这里可以比喻成根据大楼图纸建造的一幢大楼<br/>
+			<a style="color:blueviolet">
+			Person.prototype.say = function() {<br/>
+			console.log('Hello,' + this.name);<br/>
+			};<br/>
+			</a>
+			person.say();//Hello,John<br/>
+			<p style="color:red">
+			Person.prototype就是指对象原型，<br/>
+			Person.prototype.say就是给对象原型添加了一个say的方法<br/>
+			对于紫色部分代码这里比喻成通过在原来的图纸添加一些新的设计（方法／属性）来对原来的大厦进行优化<br/>
+			因此大厦只是添加了一些新功能,原来功能还是在的<br/>
+			</p>
+			function Person () {<br/>
+			this.name = 'John';<br/>
+			} //这是一个构造函数，这里比喻成大楼图纸<br/>
+			var person = new Person();//构造实例对象，这里可以比喻成根据大楼图纸建造的一幢大楼<br/>
+			<a style="color:blueviolet">
+			Person.prototype = {<br/>
+			say: function() {<br/>
+			console.log('Hello,' + this.name);<br/>
+			}<br/>
+			};<br/>
+			</a>
+			person.say();//person.say is not a function<br/>
+			<p style="color:red">
+			对于紫色部分代码可以理解成重新绘制了一张图纸来建造新的大楼<br/>
+			因此原来的大楼是找不到say这个功能的
+			</p>
+
+		</div>
+	  <br/>
+		<h3>以上可以参考链接：http://www.jb51.net/article/105090.htm<h3>
+	</body>
+</html>

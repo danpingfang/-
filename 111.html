@@ -1,0 +1,55 @@
+<script>
+	// var a = 1;
+	// var b = 2;
+	// a = b;
+  // b = 3;
+	// console.log("a=",a,";","b=",b);  //a= 2 ; b= 3
+	//说明数字是“值传递”的形式
+	
+	// var a = "111";
+	// var b = "222";
+	// a = b;
+	// b = "333";
+	// console.log("a=",a,";","b=",b); //a= 222 ; b= 333
+	//说明字符串是“值传递”的形式
+
+	// var a = new Array();
+	// a[0] = 1;
+	// var b = new Array();
+	// b[0] = 2;
+	// a = b;
+	// b[0] = 3;
+	// console.log("a[0]=",a[0],";","b[0]=",b[0]); // a[0]= 3 ; b[0]= 3
+	//说明数组是“引用传递”的形式
+
+
+
+	//这是一个构造函数，这里比喻成大楼图纸
+	// function Person () {
+	// this.name = 'John';
+  // }
+  //定义了一个对象，这里可以比喻成根据大楼图纸建造的一幢大楼
+	// var person = new Person();
+	// Person.prototype.say = function() {
+	// console.log('Hello,' + this.name);
+	// };
+	// person.say();//Hello,John
+  //Person.prototype就是指对象原型，
+	//Person.prototype.say就是给对象原型添加了一个say的方法
+	//这里比喻成工程师优化了原来的图纸，那么原来的大厦也要根据图纸进行优化
+
+  
+	function Person () {
+	this.name = 'John';
+	} //这是一个构造函数，这里比喻成大楼图纸
+	var person = new Person();//构造实例对象，这里可以比喻成根据大楼图纸建造的一幢大楼<br/>
+	Person.prototype = {
+	say: function() {
+	console.log('Hello,' + this.name);
+	}
+	};
+	person.say();//person.say is not a function
+
+
+</script>
+
